@@ -1,2 +1,1 @@
-# odin-calculator
-Odin Project - Foundations Path - Calculator
+# Odin Project - Foundations Path - Calculator
