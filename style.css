@@ -64,6 +64,11 @@ h6 {
 
 /* -------------------------------------------- */
 
+@font-face {
+  font-family: "seven-segment";
+  src: url(./fonts/Seven\ Segment.ttf);
+}
+
 body {
   height: 100vh;
   display: flex;
@@ -124,7 +129,7 @@ body {
 #screen {
   background-color: pink;
   height: 64px;
-  font-family: monospace, sans-serif;
+  font-family: "seven-segment", monospace, sans-serif;
   font-size: 64px;
   line-height: 100%;
   text-align: right;
@@ -142,10 +147,38 @@ body {
 }
 
 #button-container {
-  background-color: pink;
+  /* background-color: pink; */
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.button {
+  width: 75px;
+  height: 75px;
+  /* border: 2px solid black; */
+  border-radius: 10px;
+  font-size: 60px;
+  line-height: 70px;
+  text-align: center;
+  font-family: monospace;
+  box-shadow: 3px 3px #cccccc, -3px -3px 3px #cccccc, 3px -3px 3px #cccccc,
+    -3px 3px 3px #cccccc;
+  cursor: pointer;
+}
+
+.wide-button {
+  width: 344px;
+  height: 70px;
+  font-size: 50px;
+}
 #main-right {
   background-color: brown;
   min-width: 300px;
