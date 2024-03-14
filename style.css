@@ -66,8 +66,11 @@ h6 {
 
 @font-face {
   font-family: "seven-segment";
-  src: url(./fonts/Seven\ Segment.ttf);
+  /* src: url(./fonts/Seven\ Segment.ttf); */
+  src: url(./fonts/7segment.woff);
 }
+
+/* -------------------------------------------- */
 
 body {
   height: 100vh;
@@ -127,16 +130,29 @@ body {
 }
 
 #screen {
+  padding: 2px 6px 0px 6px;
   background-color: pink;
-  height: 64px;
+  height: 70px;
   font-family: "seven-segment", monospace, sans-serif;
-  font-size: 64px;
+  font-size: 70px;
   line-height: 100%;
   text-align: right;
   background-color: #a0a984;
   border-radius: 5px;
   box-shadow: 2px 2px #cccccc, -2px -2px 2px #cccccc, 2px -2px 2px #cccccc,
     -2px 2px 2px #cccccc;
+  position: relative;
+}
+
+.sign-display {
+  font-family: monospace;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 100%;
+  position: absolute;
+  top: -2px;
+  left: 4px;
+
 }
 
 .simple-line {
