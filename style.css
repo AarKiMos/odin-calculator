@@ -144,7 +144,7 @@ body {
   position: relative;
 }
 
-.sign-display {
+#sign-display {
   font-family: monospace;
   font-size: 26px;
   font-weight: 800;
