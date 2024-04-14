@@ -23,7 +23,7 @@ function operate(opA, opB, operator) {
     case "*":
       return multiply(opA, opB);
     case "/":
-      return multiply(opA, opB);
+      return divide(opA, opB);
     default:
       return null;
   }
@@ -44,7 +44,6 @@ function updateDisplay(value) {
   } else {
     valueString = value.toString();
   }
-  console.log(valueString);
   screen.innerText = valueString;
 }
 
@@ -70,4 +69,117 @@ function updateSignDisplay(sign) {
   }
 }
 
-updateSignDisplay("");
+updateSignDisplay(null);
+
+let buttons = document.querySelectorAll(".button");
+buttons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const buttonValue = button.dataset.value;
+
+    if (buttonValue == "clear") {
+      handleClear();
+    } else if (["+", "-", "/", "*", "="].includes(buttonValue)) {
+      handleOperator(buttonValue);
+    } else if (buttonValue == ".") {
+      handleDecimal();
+    } else {
+      handleDigit(buttonValue);
+    }
+
+    return;
+  });
+});
+
+let isDecimal = false;
+let operandA = 0;
+let operandB = 0;
+let operatorX = null;
+let isFirstOperand = true;
+let isResult = false;
+
+let inputBuffer = "";
+
+// inputBuffer.concat()
+
+function handleClear() {
+  isDecimal = false;
+  operandA = 0;
+  operandB = 0;
+  operatorX = null;
+  isFirstOperand = true;
+  inputBuffer = "";
+  isResult = flase;
+
+  updateDisplay(0);
+  updateSignDisplay(null);
+}
+
+function handleDigit(digit) {
+  if (operatorX === null && isResult) handleClear();
+
+  isResult = false;
+
+  if (
+    inputBuffer.length < 10 ||
+    (inputBuffer.length === 10 && inputBuffer.includes("."))
+  ) {
+    inputBuffer += digit.toString();
+  }
+
+  updateDisplay(+inputBuffer);
+}
+
+function handleDecimal() {
+  if (inputBuffer.length < 10 && !inputBuffer.includes(".")) {
+    inputBuffer += ".";
+  }
+
+  updateDisplay(+inputBuffer);
+}
+
+function handleOperator(operator) {
+  if (operator === "=") {
+    if (operatorX === null || isResult) {
+      return;
+    } else {
+      operandB = +inputBuffer;
+      let result = operate(operandA, operandB, operatorX);
+      isResult = true;
+      operandA = +result;
+      operandB = 0;
+      operatorX = null;
+      isDecimal = false;
+      inputBuffer = "";
+
+      updateDisplay(result);
+      updateSignDisplay();
+    }
+  } else {
+    if (isResult) {
+      operatorX = operator;
+      updateSignDisplay(operator);
+    } else if (isFirstOperand) {
+      operatorX = operator;
+      operandA = +inputBuffer;
+      inputBuffer = "";
+      isFirstOperand = false;
+      isDecimal = false;
+
+      updateSignDisplay(operator);
+      updateDisplay(0);
+    } else {
+      operandB = +inputBuffer;
+
+      let result = operate(operandA, operandB, operatorX);
+      isResult = true;
+      operandA = +result;
+      operandB = 0;
+      operatorX = operator;
+      isDecimal = false;
+      inputBuffer = "";
+
+      updateDisplay(result);
+      updateSignDisplay(operator);
+    }
+  }
+}
