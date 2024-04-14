@@ -83,7 +83,7 @@ body {
   align-items: end;
   padding: 8px;
   border-bottom: 1px solid black;
-  background-color: pink;
+  /* background-color: pink; */
 }
 
 #header-title {
@@ -207,7 +207,7 @@ body {
   justify-content: center;
   align-items: center;
   border-top: 1px solid black;
-  background-color: lime;
+  /* background-color: lime; */
 }
 
 #footer-author-link {

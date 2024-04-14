@@ -108,7 +108,7 @@ function handleClear() {
   operatorX = null;
   isFirstOperand = true;
   inputBuffer = "";
-  isResult = flase;
+  isResult = false;
 
   updateDisplay(0);
   updateSignDisplay(null);
